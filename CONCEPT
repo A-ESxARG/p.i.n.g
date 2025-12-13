@@ -1,0 +1,17 @@
+α = instigator
+β = receiver
+C = stage
+t = time, slots h
+
+Δ(h) = observed signal on C during h
+t₀ = first h with Δ(h) > 0
+τ = small horizon (in slots)
+
+ping(t): α perturbs C at t
+pong(t): ∃ h ∈ [t, t + τ] with Δ(h) > 0
+
+while:
+  ping(t)
+  watch Δ
+  if pong(t) inference(β)++
+  else adjust τ / encoding or mark as /dev/null
