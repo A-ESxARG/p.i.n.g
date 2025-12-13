@@ -1,0 +1,23 @@
+Ω = Agent
+Σ = Target System
+λ = Internal Model
+κ = Constraint
+μ = Mimetic Load
+θ = Tolerance
+
+def decode_system(Σ):
+  λ = ∅
+  μ = 0.0
+  t = 0
+  while λ ≉ Σ.ground_truth:
+    response = Σ.input(κ, t)
+    signal = response.physics
+    noise = response.politics
+    λ.update(signal)
+    μ += calculate_drag(noise)
+    if predict(Σ, using=λ) == 1.0:
+      return EXIT(status="CONVERGENCE", payload=λ)
+    if μ > θ:
+      return EXIT(status="DECOHERENCE", reason="Mimetic Saturation")
+    t++
+  return λ

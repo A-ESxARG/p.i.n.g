@@ -1,0 +1,17 @@
+α = instigator
+β = receiver
+C = stage
+t = time, slots h
+σ = expected signal
+
+Δ(h) = observed signal on C during h
+τ = time horizon (in slots)
+
+ping(t, σ): α -> σ into C at t
+pong(t): ∃ h ∈ [t, t + τ] with Δ(h) ≈ σ
+
+while:
+  ping(t, σ)
+  watch Δ
+  if pong(t) inference(β)++
+  else inference(β)--
